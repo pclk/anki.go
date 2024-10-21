@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os/exec"
 	"path/filepath"
+	"strings"
 
 	"github.com/pclk/anki.go/converter"
 )
@@ -40,5 +41,8 @@ func CreateNote(inputFile, defaultDeck string) error {
 func ExecuteCommand(args ...string) (string, error) {
 	cmd := exec.Command(args[0], args[1:]...)
 	output, err := cmd.CombinedOutput()
-	return string(output), err
+	if err != nil {
+		return string(output), fmt.Errorf("error executing command '%s': %v\n%s", strings.Join(args, " "), err, output)
+	}
+	return string(output), nil
 }
