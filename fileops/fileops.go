@@ -30,7 +30,7 @@ func CreateOutputFile(filename string) (*bufio.Writer, func(), error) {
 }
 
 func RemoveOutputFile() error {
-	files, err := filepath.Glob("apy-*.md")
+	files, err := filepath.Glob("anki-*.md")
 	if err != nil {
 		return fmt.Errorf("error finding files to clean up: %v", err)
 	}
