@@ -26,7 +26,7 @@ func run() error {
 	}
 
 	if flag.NArg() != 1 {
-		return fmt.Errorf("Usage: anki <input_file.md> [-d default_deck]")
+		return fmt.Errorf("Usage: anki [-d default_deck] <input_file.md> ")
 	}
 
 	inputFile := flag.Arg(0)
