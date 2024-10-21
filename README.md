@@ -84,7 +84,7 @@ The vertical deviation from each data point to the line is first squared, which 
 ## Additional features
 `-d` allows you to specify default decks for the files you're importing.
 ```sh
-anki ml.md -d Machine_learning
+anki -d Machine_learning ml.md 
 ```
 This will execute the command `apy add-from-file anki-xxx.md -d Machine_learning`
 
