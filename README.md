@@ -66,7 +66,7 @@ VM Image
 model: Cloze
 
 ## Text
-The four most popular cloud offerings are {{c6::Image}}, {{c7::Natural Language Processing}}, {{c8::Speech}}, and {{c9::Chatbots}}.
+The four most popular cloud offerings are {{c1::Image}}, {{c2::Natural Language Processing}}, {{c3::Speech}}, and {{c4::Chatbots}}.
 
 ## Back Extra
 These are offered by Google cloud, Azure and AWS.

@@ -88,6 +88,7 @@ func writeClozeDeletion(writer *bufio.Writer, text, backExtra string, counter *i
 	// Process cloze deletions using simple string operations
 	processed := ""
 	remaining := text
+	clozeCounter := 0
 	for {
 		start := strings.Index(remaining, "{{")
 		if start == -1 {
@@ -102,10 +103,10 @@ func writeClozeDeletion(writer *bufio.Writer, text, backExtra string, counter *i
 		}
 		end += start + 2
 
-		*counter++
+		clozeCounter++
 		processed += remaining[:start]
 		clozeText := remaining[start+2 : end-2]
-		processed += fmt.Sprintf("{{c%d::%s}}", *counter, clozeText)
+		processed += fmt.Sprintf("{{c%d::%s}}", clozeCounter, clozeText)
 
 		remaining = remaining[end:]
 	}
