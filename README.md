@@ -14,23 +14,18 @@ Format your .md files as such:
 
 > file_name:ml.md
 ```md
-# What is the equation for linear regression?
-y = a + bx + e 
+# How to send POST request in python with headers and binary file?
+requests.get(url, headers={}, data=filedata)
 
-where a is intercept
+# The five AutoML offerings include {{Vision}}, {{Tables}}, {{Natural Language}}, {{Video Intelligence}}, and {{Translation}}.
 
-b is slope of line 
+# What Google Cloud tools do AI Engineers use?
+Deep learning containers 
 
-e is error term
+VM Image
 
-# What modelling technique should you use if your variable is continuous?
-Linear regression
-
-# What is the most common method to obtain the best fit line of a linear regression?
-Least Square method. It minimizes the sum of the squares of the vertical deviation from each data point to the line.
-
-# Why is the values of the Least Square method absolute?
-The vertical deviation from each data point to the line is first squared, which turns negative into positive values.
+# The four most popular cloud offerings are {{Image}}, {{Natural Language Processing}}, {{Speech}}, and {{Chatbots}}.
+These are offered by Google cloud, Azure and AWS.
 ```
 Run `anki ml.md`,
 
@@ -43,50 +38,47 @@ model: Basic
 # Note
 
 ## Front
-What is the equation for linear regression?
+How to send POST request in python with headers and binary file?
 
 ## Back
-y = a + bx + e 
+requests.get(url, headers={}, data=filedata)
 
-where a is intercept
+# Note
+model: Cloze
 
-b is slope of line 
+## Text
+The five AutoML offerings include {{c1::Vision}}, {{c2::Tables}}, {{c3::Natural Language}}, {{c4::Video Intelligence}}, and {{c5::Translation}}.
 
-e is error term
+## Back Extra
+
 
 # Note
 
 ## Front
-What modelling technique should you use if your variable is continuous?
+What Google Cloud tools do AI Engineers use?
 
 ## Back
-Linear regression
+Deep learning containers 
+
+VM Image
 
 # Note
+model: Cloze
 
-## Front
-What is the most common method to obtain the best fit line of a linear regression?
+## Text
+The four most popular cloud offerings are {{c6::Image}}, {{c7::Natural Language Processing}}, {{c8::Speech}}, and {{c9::Chatbots}}.
 
-## Back
-Least Square method. It minimizes the sum of the squares of the vertical deviation from each data point to the line.
-
-# Note
-
-## Front
-Why is the values of the Least Square method absolute?
-
-## Back
-The vertical deviation from each data point to the line is first squared, which turns negative into positive values.
+## Back Extra
+These are offered by Google cloud, Azure and AWS.
 ```
 
-`anki.go` will execute the command `apy add-from-file anki-ml.md` to insert the notes into your anki db. It will also return the output of the command.
+`anki.go` will execute the command `apy add-from-file anki-ml.md` to insert the notes into your anki db. It will also return the output and errors of the command.
 
 ## Additional features
-`-d` allows you to specify default decks for the files you're importing.
+`-d` allows you to specify decks for the cards you're adding
 ```sh
 anki -d Machine_learning ml.md 
 ```
-This will execute the command `apy add-from-file anki-xxx.md -d Machine_learning`
 
 `anki c` will execute a cleanup process to delete all anki-xxx.md files in the working directory.
 
@@ -109,5 +101,6 @@ anki test/test.md
 ```
 
 ## Frequent problems
-- Database is locked
-> Close your anki.
+- Database is NA/locked!
+> Close your Anki
+

@@ -1,17 +1,10 @@
-# What is the equation for linear regression?
-y = a + bx + e 
+# How to send POST request in python with headers and binary file?
+requests.get(url, headers={}, data= filedata)
 
-where a is intercept
+# The five AutoML offerings include {{Vision}}, {{Tables}}, {{Natural Language}}, {{Video Intelligence}}, and {{Translation}}.
 
-b is slope of line 
+# What Google Cloud tools do AI Engineers use?
+Deep learning containers and VM Image
 
-e is error term
-
-# What modelling technique should you use if your variable is continuous?
-Linear regression
-
-# What is the most common method to obtain the best fit line of a linear regression?
-Least Square method. It minimizes the sum of the squares of the vertical deviation from each data point to the line.
-
-# Why is the values of the Least Square method absolute?
-The vertical deviation from each data point to the line is first squared, which turns negative into positive values.
+# The four most popular cloud offerings are {{Image}}, {{Natural Language Processing}}, {{Speech}}, and {{Chatbots}}.
+These are offered by Google cloud, Azure and AWS.
