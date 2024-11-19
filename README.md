@@ -126,3 +126,79 @@ This will call anthropic Claude Sonnet 3.5 to generate Cloze deletions from your
 9. Repeat step 6 to 8 until completion of note.md
 
 Each section is separated via ## (h2) markdown headers.
+
+TODO2: design a markdown file structure, such that configurations like the .env, model, conversation file can be stated at the top. then, for every h1 or whatever, loop through and answer those questions in the h1. 
+```markdown
+.env: ./.env
+conv: my_conversation.json
+
+# system prompt 
+bleh
+
+# document
+./test/'Week 6 Reinforcement Learning.pdf'
+
+# prompt
+Summarize this pdf. make sure its good ok?
+
+# prompt
+Not good enough. break it up into 3 sections which we will go through one by one.
+
+# prompt
+Let's start with the 1st section. make sure its good.
+
+# prompt
+Okay, 2nd section.
+
+# prompt
+Okay, 3rd section.
+```
+
+after anki -ai this_prompting_file.md:
+```markdown
+.env: ./.env
+conv: my_conversation.json
+
+# system prompt 
+bleh
+
+# document
+./test/'Week 6 Reinforcement Learning.pdf'
+
+# prompt
+Summarize this pdf. make sure its good ok?
+
+I'll help guide you through a detailed study session of these reinforcement learning notes. Let's break it down into key sections:
+
+1. Introduction to Reinforcement Learning:
+- It's a type of machine learning where an agent learns to make decisions by interacting with an environment
+- The agent takes actions to maximize rewards in specific situations
+...
+
+# prompt
+Not good enough. break it up into 3 sections which we will go through one by one.
+
+ok. here we go.
+section 1 from ... to ...
+section 2 from ... to ...
+section 3 from ... to ...
+do you need any other help?
+
+# prompt
+Let's start with the 1st section. make sure its good.
+
+ok. ...(insert 1st section study notes)
+
+# prompt
+Okay, 2nd section.
+
+
+ok. ...(insert 2nd section study notes)
+
+# prompt
+Okay, 3rd section.
+
+
+ok. ...(insert 3rd section study notes)
+```
+
