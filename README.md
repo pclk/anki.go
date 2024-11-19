@@ -104,3 +104,25 @@ anki test/test.md
 - Database is NA/locked!
 > Close your Anki
 
+## TODO
+- Anthropic integration
+Step 1: Distill lecture material from pdf, word etc to a nicely formatted markdown file 
+> You could upload your pdf to NotebookLM and collect the formatted document, or ask the AI to generate notes based off it.
+
+Step 2: Compare lecture material and your markdown file. Add information about diagrams, images, and other missing information.
+> This is the stage where you understand you lecture material.
+
+Step 3: Call anki --ai note.md
+This will call anthropic Claude Sonnet 3.5 to generate Cloze deletions from your notes
+
+1. Take the first section and ask Claude to generate.
+2. Claude generates output A.
+3. No matter what output A is, tell Claude "more detailed please".
+4. Claude generates output B.
+5. Create file `anki.md`, and append output B to anki.md
+6. Provide the next section
+7. Claude generates output C.
+8. Append output C to anki.md.
+9. Repeat step 6 to 8 until completion of note.md
+
+Each section is separated via ## (h2) markdown headers.
