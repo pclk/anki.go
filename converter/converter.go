@@ -141,9 +141,9 @@ func processLine(line string, front, back *strings.Builder, writer *bufio.Writer
 				if i > 0 {
 					prefix = "Sub-section: "
 				}
-				front.WriteString(prefix + section.Content + "\n\n")
+				front.WriteString(prefix + section.Content + "\n")
 			}
-			front.WriteString("\n") // Double newline after sections for better spacing
+			front.WriteString("\n")
 		}
 		front.WriteString(line + "\n")
 
@@ -168,7 +168,6 @@ func processLine(line string, front, back *strings.Builder, writer *bufio.Writer
 				}
 				front.WriteString(prefix + section.Content + "\n\n")
 			}
-			front.WriteString("\n") // Double newline after sections for better spacing
 		}
 		front.WriteString(line)
 
@@ -207,9 +206,28 @@ func writeBasicNote(writer *bufio.Writer, front, back string) {
 	fmt.Printf("Raw back being written:\n%q\n", back)
 	writer.WriteString("# Note\n\n")
 	writer.WriteString("## Front\n\n")
-	writer.WriteString(front + "\n\n")
+
+	// Add extra newline for each newline in front content
+	frontLines := strings.Split(front, "\n")
+	for i, line := range frontLines {
+		writer.WriteString(line)
+		if i < len(frontLines)-1 {
+			writer.WriteString("\n\n") // Double newline between lines
+		}
+	}
+	writer.WriteString("\n\n")
+
 	writer.WriteString("## Back\n\n")
-	writer.WriteString(back + "\n\n")
+
+	// Add extra newline for each newline in back content
+	backLines := strings.Split(back, "\n")
+	for i, line := range backLines {
+		writer.WriteString(line)
+		if i < len(backLines)-1 {
+			writer.WriteString("\n\n") // Double newline between lines
+		}
+	}
+	writer.WriteString("\n\n")
 }
 
 func hasClozeMarkers(text string) bool {

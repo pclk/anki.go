@@ -5,7 +5,6 @@ model: Cloze
 
 Section: Cloud Services
 
-
 The five AutoML offerings include {{c1::Vision}}, {{c2::Tables}}, {{c3::Natural Language}}, {{c4::Video Intelligence}}, and {{c5::Translation}}.
 
 ## Back Extra
@@ -17,7 +16,10 @@ The five AutoML offerings include {{c1::Vision}}, {{c2::Tables}}, {{c3::Natural 
 
 Section: Cloud Services
 
+
+
 Sub-section: Machine Learning
+
 
 
 What Google Cloud tools do AI Engineers use?
@@ -25,6 +27,7 @@ What Google Cloud tools do AI Engineers use?
 ## Back
 
 Deep learning containers
+
 VM Image
 
 # Note
@@ -37,7 +40,6 @@ Section: Cloud Services
 Sub-section: Machine Learning
 
 Sub-section: Development
-
 
 How to send POST request in python with headers and binary file?
 ## Back Extra
@@ -52,7 +54,6 @@ model: Cloze
 
 Section: Water
 
-
 This section is about {{c1::water}}.
 
 ## Back Extra
@@ -64,7 +65,6 @@ model: Cloze
 ## Text
 
 Section: Fire
-
 
 However, this section has been overriden with {{c1::Fire}}.
 
@@ -78,7 +78,6 @@ model: Cloze
 
 Section: Fire
 
-
 very {{c1::spicy}}.
 
 ## Back Extra
@@ -90,7 +89,6 @@ model: Cloze
 ## Text
 
 Section: Clear section
-
 
 Subsequent cards no longer have any {{c1::section prefix}}.
 
