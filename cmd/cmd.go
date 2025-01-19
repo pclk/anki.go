@@ -16,7 +16,8 @@ func CreateNote(inputFile, defaultDeck string) error {
 	// Create the output filename with "apy-" prefix
 	outputFile := filepath.Join(dir, "anki-"+file)
 
-	if err := converter.ConvertToAnki(inputFile, outputFile); err != nil {
+	deckName, err := converter.ConvertToAnki(inputFile, outputFile)
+	if err != nil {
 		return err
 	}
 
@@ -25,6 +26,8 @@ func CreateNote(inputFile, defaultDeck string) error {
 	command := []string{"apy", "add-from-file", outputFile}
 	if defaultDeck != "" {
 		command = append(command, "-d", defaultDeck)
+	} else if deckName != "" {
+		command = append(command, "-d", deckName)
 	}
 
 	output, err := ExecuteCommand(command...)

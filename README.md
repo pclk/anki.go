@@ -14,18 +14,16 @@ Format your .md files as such:
 
 > file_name:ml.md
 ```md
-# How to send POST request in python with headers and binary file?
+# deck: ml
+
+How to send POST request in python with headers and binary file?
 requests.get(url, headers={}, data=filedata)
 
-# The five AutoML offerings include {{Vision}}, {{Tables}}, {{Natural Language}}, {{Video Intelligence}}, and {{Translation}}.
+The five AutoML offerings include -Vision-, -Tables-, -Natural Language-, -Video Intelligence-, and -Translation-.
 
-# What Google Cloud tools do AI Engineers use?
-Deep learning containers 
-
+What Google Cloud tools do AI Engineers use?
+Deep learning containers
 VM Image
-
-# The four most popular cloud offerings are {{Image}}, {{Natural Language Processing}}, {{Speech}}, and {{Chatbots}}.
-These are offered by Google cloud, Azure and AWS.
 ```
 Run `anki ml.md`,
 
@@ -74,10 +72,281 @@ These are offered by Google cloud, Azure and AWS.
 
 `anki.go` will execute the command `apy add-from-file anki-ml.md` to insert the notes into your anki db. It will also return the output and errors of the command.
 
+### Basic cards
+```md
+hello?
+are you there?
+```
+-->
+```md
+model: Basic
+
+# Note
+
+## Front
+hello?
+
+## Back
+are you there?
+```
+> A line ending with a question mark ? signifies the front of a Basic card.
+> Subsequent lines, until a blank line is encountered, form the back of the Basic card.
+
+### Cloze deletion cards
+#### Single-lined consecutive clozes
+```md
+this is a -single- line -cloze- deletion -card-.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+this is a {{c1::single}} line {{c2::cloze}} deletion {{c3::card}}.
+
+## Back Extra
+
+```
+
+#### Single-lined consecutive clozes with back extra
+```md
+this is a -single- line -cloze- deletion -card-.
+> I love to use AI to generate the back extra to give extra details about the card.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+this is a {{c1::single}} line {{c2::cloze}} deletion {{c3::card}}.
+
+## Back Extra
+I love to use AI to generate the back extra to give extra details about the card.
+
+```
+
+#### Single-lined grouped clozes
+```md
+this is a -single- line 1.-cloze- deletion 1.-card-.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+this is a {{c1::single}} line {{c2::cloze}} deletion {{c2::card}}.
+
+## Back Extra
+
+```
+> Syntax: n.-text-, n.-text-, where `n` is the same number. `n` does not represent the card number ({{c`n`::text}}), but rather a group identifier that groups the clozes.
+
+#### Multi-lined clozes
+```md
+this is a -multi- line 1.-cloze- deletion 1.-card-.
+The text will -no\-longer- be part of this line if there's a
+2.-new- blank 2.-line- after.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+this is a {{c1::multi}} line {{c2::cloze}} deletion {{c2::card}}.
+The text will {{c3::no-longer}} be part of this line if there's a
+{{c4::new}} blank {{c4::line}} after.
+
+## Back Extra
+
+```
+
+### Sections
+```md
+## Water
+
+The water has the possibility of getting things -wet-.
+
+Why are things considered wet?
+Water molecules fill up the holes of the item.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+Section: Water
+
+The water has the possibility of getting things {{c1::wet}}.
+
+## Back Extra
+
+
+# Note
+
+## Front
+Seciton: Water
+
+Why are things considered wet?
+
+## Back
+Water molecules fill up the holes of the item.
+```
+> Automatically prepends the current section prefix, followed by `\n\n`, to the front of the Basic/Cloze card during the conversion.
+> Sections are denoted by h2 and above headers.
+
+#### Overriding Sections
+```md
+## Water
+This section is about -water-.
+
+## Fire
+However, this section has been overriden with -Fire-.
+
+very -spicy-.
+
+## Clear section
+Subsequent cards no longer have any -section prefix-.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+Section: Water
+
+This section is about {{c1::water}}.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Fire
+However, this section has been overriden with {{c1::Fire}}.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Fire
+
+very {{c1::spicy}}.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Subsequent cards no longer have any {{c1::section prefix}}.
+
+## Back Extra
+
+```
+
+#### Nested sections
+```md
+## Water 
+this section is about -water-.
+
+### Liquid
+in the liquid form, water -can- (can or not) be compressed.
+
+#### Carbonation
+carbonated water is still -liquid water-, just with dissolved carbon dioxide.
+
+### Gas
+in the gaseous form, steam can be -compressed-.
+
+
+## Fire
+this section is about -fire-.
+```
+-->
+```md
+# Note
+model: Cloze
+
+## Text
+Section: Water
+
+this section is about {{c1::water}}.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Water
+Sub-section: Liquid
+
+in the liquid form, water {{c1::can}} (can or not) be compressed.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Water
+Sub-section: Liquid
+Sub-section: Carbonation
+
+carbonated water is still {{c1::liquid water}}, just with dissolved carbon dioxide.
+
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Water
+Sub-section: Gas
+
+in the gaseous form, steam can be {{c1::compressed}}.
+
+## Back Extra
+
+
+
+# Note
+model: Cloze
+
+## Text
+Section: Fire
+
+this section is about {{c1::fire}}.
+
+## Back Extra
+
+```
+
 ## Additional features
-`-d` allows you to specify decks for the cards you're adding
+`-d` allows you to specify decks for the cards you're adding, if you haven't defined the deck at the start.
 ```sh
 anki -d Machine_learning ml.md 
+```
+vs
+```md
+# deck: Machine_learning
+
+basic flashcard? yes
 ```
 
 `anki c` will execute a cleanup process to delete all anki-xxx.md files in the working directory.
@@ -201,4 +470,3 @@ Okay, 3rd section.
 
 ok. ...(insert 3rd section study notes)
 ```
-

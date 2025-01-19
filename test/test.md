@@ -1,10 +1,25 @@
-# How to send POST request in python with headers and binary file?
-requests.get(url, headers={}, data= filedata)
+# deck: test
 
-# The five AutoML offerings include {{Vision}}, {{Tables}}, {{Natural Language}}, {{Video Intelligence}}, and {{Translation}}.
+## Cloud Services
+The five AutoML offerings include -Vision-, -Tables-, -Natural Language-, -Video Intelligence-, and -Translation-.
 
-# What Google Cloud tools do AI Engineers use?
-Deep learning containers and VM Image
+### Machine Learning
+What Google Cloud tools do AI Engineers use?
+Deep learning containers
+VM Image
 
-# The four most popular cloud offerings are {{Image}}, {{Natural Language Processing}}, {{Speech}}, and {{Chatbots}}.
-These are offered by Google cloud, Azure and AWS.
+#### Development
+How to send POST request in python with headers and binary file?
+requests.get(url, headers={}, data=filedata)
+
+## Water
+This section is about -water-.
+
+## Fire
+However, this section has been overriden with -Fire-.
+
+very -spicy-.
+
+## Clear section
+Subsequent cards no longer have any -section prefix-.
+
