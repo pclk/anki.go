@@ -9,11 +9,12 @@ import (
 )
 
 func ExtractDeckName(scanner *bufio.Scanner) string {
-	if scanner.Scan() {
-		firstLine := scanner.Text()
-		firstLineLower := strings.ToLower(firstLine)
-		if strings.HasPrefix(firstLineLower, "# deck:") {
-			return strings.TrimSpace(strings.TrimPrefix(firstLine, firstLine[:7]))
+	// Scan until we find the deck line
+	for scanner.Scan() {
+		line := scanner.Text()
+		lineLower := strings.ToLower(line)
+		if strings.HasPrefix(lineLower, "# deck:") {
+			return strings.TrimSpace(strings.TrimPrefix(line, line[:7]))
 		}
 	}
 	return ""
@@ -51,19 +52,42 @@ func ConvertToAnki(inputFile, outputFile string) (string, error) {
 func processFile(scanner *bufio.Scanner, writer *bufio.Writer) error {
 	var front, back strings.Builder
 	var currentSection string
+	foundDeck := false
+	previousLine = ""
 
-	// Skip the deck specification line if it exists
-	if scanner.Scan() {
-		firstLine := scanner.Text()
-		if !strings.HasPrefix(strings.ToLower(firstLine), "# deck:") {
-			processLine(firstLine, &front, &back, writer, &currentSection)
+	// Skip everything until we find the deck line
+	for scanner.Scan() {
+		line := scanner.Text()
+		if strings.HasPrefix(strings.ToLower(line), "# deck:") {
+			foundDeck = true
+			break
 		}
+	}
+
+	if !foundDeck {
+		return fmt.Errorf("no deck specification found")
 	}
 
 	// Process remaining lines
 	for scanner.Scan() {
 		line := scanner.Text()
-		processLine(line, &front, &back, writer, &currentSection)
+		if err := processLine(line, &front, &back, writer, &currentSection, scanner); err != nil {
+			return err
+		}
+	}
+
+	// Check for isolated line at the end of file
+	if front.Len() > 0 {
+		frontContent := front.String()
+		if previousLine == "" && !hasClozeMarkers(frontContent) && !strings.HasSuffix(frontContent, "?") {
+			fmt.Printf("\n⚠️  WARNING: Isolated line at end of file without cloze markers or question mark:\n%s\n", frontContent)
+			fmt.Print("Continue processing? (y/N): ")
+			var response string
+			fmt.Scanln(&response)
+			if response != "y" && response != "Y" {
+				return fmt.Errorf("process stopped by user")
+			}
+		}
 	}
 
 	// Write any remaining content
@@ -85,7 +109,10 @@ type Section struct {
 
 var currentSections []Section
 
-func processLine(line string, front, back *strings.Builder, writer *bufio.Writer, currentSection *string) {
+// Track the previous line to detect isolated lines
+var previousLine string
+
+func processLine(line string, front, back *strings.Builder, writer *bufio.Writer, currentSection *string, scanner *bufio.Scanner) error {
 	fmt.Printf("\n=== Processing line: %q\n", line)
 	fmt.Printf("Current front buffer:\n%q\n", front.String())
 	fmt.Printf("Current back buffer:\n%q\n", back.String())
@@ -110,7 +137,7 @@ func processLine(line string, front, back *strings.Builder, writer *bufio.Writer
 				break
 			}
 		}
-		return
+		return nil
 	}
 
 	// Only write out note if we're starting a new section or note
@@ -191,13 +218,38 @@ func processLine(line string, front, back *strings.Builder, writer *bufio.Writer
 			}
 			back.WriteString(line)
 		} else {
-			// Otherwise add to front
+			// Check for isolated lines without markers
+			trimmedLine := strings.TrimSpace(line)
+			if trimmedLine != "" && !hasClozeMarkers(line) && !strings.HasSuffix(line, "?") {
+				// Check if this line is isolated (blank lines before and after)
+				if previousLine == "" && front.Len() == 0 {
+					// Store this line to check if the next line is blank
+					if scanner.Scan() {
+						nextLine := scanner.Text()
+						if nextLine == "" {
+							fmt.Printf("\n⚠️  WARNING: Isolated line without cloze markers or question mark:\n%s\n", line)
+							fmt.Print("Continue processing? (y/N): ")
+							var response string
+							fmt.Scanln(&response)
+							if response != "y" && response != "Y" {
+								return fmt.Errorf("process stopped by user")
+							}
+						}
+						// Process this line in the next iteration
+						previousLine = line
+						line = nextLine
+					}
+				}
+			}
+
+			// Add to front anyway
 			if front.Len() > 0 {
 				front.WriteString("\n")
 			}
 			front.WriteString(line)
 		}
 	}
+	return nil
 }
 
 func writeBasicNote(writer *bufio.Writer, front, back string) {

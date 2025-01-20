@@ -335,8 +335,33 @@ this section is about {{c1::fire}}.
 
 ## Back Extra
 
-```
+### Comments
+```md
+# test
+test test any sort of
+comments
+should be able to
+- be used all before the deck lols
 
+offerings
+# deck: test
+
+## Cloud Services
+The five AutoML offerings include -Vision-, -Tables-, -Natural Language-, -Video Intelligence-, and -Translation-.
+```
+-->
+```md
+
+# Note
+model: Cloze
+
+## Text
+The four most popular cloud offerings are {{c1::Image}}, {{c2::Natural Language Processing}}, {{c3::Speech}}, and {{c4::Chatbots}}.
+
+## Back Extra
+These are offered by Google cloud, Azure and AWS.
+```
+> All text before `# deck:` or `# Deck:` will be ignored.
 ## Additional features
 `-d` allows you to specify decks for the cards you're adding, if you haven't defined the deck at the start.
 ```sh

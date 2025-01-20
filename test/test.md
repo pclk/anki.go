@@ -1,3 +1,10 @@
+# test
+test test any sort of
+comments
+should be able to
+- be used all before the deck lols
+
+offerings
 # deck: test
 
 ## Cloud Services
@@ -23,3 +30,4 @@ very -spicy-.
 ## Clear section
 Subsequent cards no longer have any -section prefix-.
 
+this should have a warning
