@@ -396,9 +396,28 @@ anki test/test.md
 
 ## Frequent problems
 - Database is NA/locked!
-> Close your Anki
+> Close your Anki and rerun the command. Because we're using `apy` to directly modify the database, we need to close anki to prevent corruption.
 
 ## TODO
+- use command `anki` to open an editor with the defined default template. This will make it easy to have a system prompt at the start of each deck, which can allow AI to perform actions on the code easily.
+- card templates.
+
+# deck: Study
+
+# templates
+
+definition
+What is {term}?
+{definition}
+
+## End templates
+
+template: definition
+term: Algorithm
+definition: A step-by-step procedure...
+
+template: definition
+
 - Anthropic integration
 Step 1: Distill lecture material from pdf, word etc to a nicely formatted markdown file 
 > You could upload your pdf to NotebookLM and collect the formatted document, or ask the AI to generate notes based off it.
