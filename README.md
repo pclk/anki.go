@@ -400,23 +400,39 @@ anki test/test.md
 
 ## TODO
 - use command `anki` to open an editor with the defined default template. This will make it easy to have a system prompt at the start of each deck, which can allow AI to perform actions on the code easily.
+- create notes. then, ai give feedback on each section, which is defined in each heading
 - card templates.
 
+```md
 # deck: Study
 
-# templates
+definition of: What is {}?
+{}
+example: {} examples of {} are -{,}-.
 
-definition
-What is {term}?
-{definition}
 
-## End templates
+definition of Algorithm
+A step-by-step procedure for solving a problem
 
-template: definition
-term: Algorithm
-definition: A step-by-step procedure...
+definition of Binary Search
+An efficient search algorithm that works on sorted arrays
 
-template: definition
+example 3 | Binary Tree
+BST, AVL Tree, Red-Black Tree
+```
+-->
+```md
+What is Algorithm?
+A step-by-step procedure for solving a problem
+
+What is Binary Search?
+An efficient search algorithm that works on sorted arrays
+
+3 examples of Binary Tree are -BST-, -AVL Tree-, Red\-Black Tree
+```
+> Syntax: a template definition is a line which is before any cards, starts with words (does not contain {}) followed by colon, followed by the template content (must contain at least 1 {}).
+> Usage of templates by writing the template name, followed by a space then the replacement text. Delimited by | or new line.
+> Inputting a character within a placeholder definition surrounded with cloze markers (-{,}-) will delimit the replacement text by the character.
 
 - Anthropic integration
 Step 1: Distill lecture material from pdf, word etc to a nicely formatted markdown file 

@@ -20,6 +20,7 @@ func CreateNote(inputFile, defaultDeck string) error {
 	if err != nil {
 		return err
 	}
+	fmt.Println("deckName", deckName)
 
 	fmt.Printf("Conversion complete. Output file: %s\n", outputFile)
 
