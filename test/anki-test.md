@@ -14,6 +14,7 @@ model: Cloze
 ## Text
 
 3 examples of Binary Tree are {{c1::BST}}, {{c2::AVL Tree}}, {{c3::Red-Black Tree}}
+
 ## Back Extra
 
 
@@ -32,19 +33,24 @@ model: Cloze
 
 ## Text
 
-Section: Cloud Services
+The five AutoML offerings include {{c1::Vision}}, {{c2::Tables}}, {{c1::Natural Language}}, {{c3::Video Intelligence}}, and {{c4::Translation}}.
 
-The five AutoML offerings include {{c1::Vision}}, {{c2::Tables}}, {{c3::Natural Language}}, {{c4::Video Intelligence}}, and {{c5::Translation}}.
+## Back Extra
+
+
+# Note
+model: Cloze
+
+## Text
+
+The main reasons in the Challenge of AI implementation are: {{c1::lack}} of {{c1::talent}}, {{c2::lack}} of {{c2::processes}} that can {{c2::manage change}} and {{c3::absence}} of {{c3::automated systems}}.
+
 ## Back Extra
 
 
 # Note
 
 ## Front
-
-Section: Cloud Services
-
-Sub-section: Machine Learning
 
 What Google Cloud tools do AI Engineers use?
 
@@ -57,10 +63,6 @@ VM Image
 
 ## Front
 
-Section: Cloud Services
-
-Sub-section: Machine Learning > Development
-
 How to send POST request in python with headers and binary file?
 
 ## Back
@@ -72,9 +74,8 @@ model: Cloze
 
 ## Text
 
-Section: Water
-
 This section is about {{c1::water}}.
+
 ## Back Extra
 
 
@@ -82,10 +83,9 @@ This section is about {{c1::water}}.
 model: Cloze
 
 ## Text
-
-Section: Fire
 
 However, this section has been overriden with {{c1::Fire}}.
+
 ## Back Extra
 
 
@@ -94,9 +94,8 @@ model: Cloze
 
 ## Text
 
-Section: Fire
-
 very {{c1::spicy}}.
+
 ## Back Extra
 
 
@@ -106,6 +105,7 @@ model: Cloze
 ## Text
 
 Subsequent cards no longer have any {{c1::section prefix}}.
+
 ## Back Extra
 
 

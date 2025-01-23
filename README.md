@@ -401,6 +401,7 @@ anki test/test.md
 ## TODO
 - use command `anki` to open an editor with the defined default template. This will make it easy to have a system prompt at the start of each deck, which can allow AI to perform actions on the code easily.
 - create notes. then, ai give feedback on each section, which is defined in each heading
+- switch 1.-text- to -text-.1
 - card templates.
 
 ```md

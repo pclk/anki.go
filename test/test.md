@@ -24,7 +24,9 @@ def Algorithm
 A step-by-step procedure for solving a problem
 
 ## Cloud Services
-The five AutoML offerings include -Vision-, -Tables-, -Natural Language-, -Video Intelligence-, and -Translation-.
+The five AutoML offerings include 1.-Vision-, -Tables-, 1.-Natural Language-, -Video Intelligence-, and -Translation-.
+
+The main reasons in the Challenge of AI implementation are: 1.-lack- of 1.-talent-, 2.-lack- of 2.-processes- that can 2.-manage change- and 3.-absence- of 3.-automated systems-.
 
 ### Machine Learning
 What Google Cloud tools do AI Engineers use?
